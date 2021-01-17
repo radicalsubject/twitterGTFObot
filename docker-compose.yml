@@ -1,0 +1,11 @@
+version: '3.7'
+
+services:
+  bot:
+    build: ./bot_container
+    container_name: twibot
+    tty: true # this fucker is a must for container to run - why?
+    restart: unless-stopped
+    environment:
+      - PYTHONUNBUFFERED=1 
+    command: conda run -n twibot --no-capture-output python -u main.py 

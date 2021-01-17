@@ -1,0 +1,14 @@
+# FROM alpine:3.7 -- example of starting from docker image
+# --no-capture-output supported only since anaconda 4.9, miniconda doesnt work yet
+FROM continuumio/anaconda3:latest 
+WORKDIR /twibot
+# Create the environment:
+COPY env.yml .
+RUN conda update -n base -c defaults conda
+# install dependencies
+RUN conda env create -f env.yml
+# copy all other files for bot
+COPY . .
+# Make RUN commands use the new environment: -- activate env doesnt work!!!
+# The SHELL instruction allows the default shell used for the shell form of commands to be overridden. The default shell on Linux is ["/bin/sh", "-c"], and on Windows is ["cmd", "/S", "/C"]. The SHELL instruction must be written in JSON form in a Dockerfile.
+SHELL ["conda", "run", "-n", "twibot", "/bin/bash", "-c"] 

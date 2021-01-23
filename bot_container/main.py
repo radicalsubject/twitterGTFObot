@@ -5,8 +5,7 @@
 # This program is dedicated to the public domain under the CC0 license.
 
 """
-Money tracker bot. write down all expenses and revenues. get stats. 
-Testing containerization, OOP - wrappers (classes for connection), improved documentation and security.
+
 """
 #logging errors to console output
 import logging

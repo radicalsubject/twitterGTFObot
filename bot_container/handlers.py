@@ -32,11 +32,9 @@ def test(update, context):
 def image_handler(update: Update, context: CallbackContext):
     file_id = update.message.photo[-1].file_id
     file = bot.getFile(file_id)
-    # print ("file_id: " + str(file_id))
-
     path = os.getcwd() + "/tmp/" + file_id + ".jpg"
-    print(path)
     file.download(path)
     text = pytesseractModule.read_image(path)
+    blacklist = ["bitcoin"]
+    ANY([(word in text.lower()) for word in blacklist])
     update.message.reply_text(f'{text}')
-    print("file downloaded")

@@ -7,6 +7,10 @@ COPY env.yml .
 RUN conda update -n base -c defaults conda
 # install dependencies
 RUN conda env create -f env.yml
+RUN apt update && apt install -y libsm6 libxext6
+RUN apt-get -y install tesseract-ocr
+# RUN pip install pillow
+# RUN pip install pytesseract
 # copy all other files for bot
 COPY . .
 # Make RUN commands use the new environment: -- activate env doesnt work!!!

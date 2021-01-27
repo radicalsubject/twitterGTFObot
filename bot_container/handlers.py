@@ -1,7 +1,7 @@
 from telegram import (Bot, Update, InlineKeyboardMarkup, InlineKeyboardButton)
 from telegram.ext import (CallbackContext, ConversationHandler)
 import os, logging
-from modules import pytesseractModule
+from modules import pytesseractModule, twitterScreenshotRecognizer
 from token_extractor import token
 
 bot = Bot(token)
@@ -35,6 +35,9 @@ def image_handler(update: Update, context: CallbackContext):
     path = os.getcwd() + "/tmp/" + file_id + ".jpg"
     file.download(path)
     text = pytesseractModule.read_image(path)
-    blacklist = ["bitcoin"]
-    ANY([(word in text.lower()) for word in blacklist])
-    update.message.reply_text(f'{text}')
+    blacklist = ["bitcoin", "elon", "musk", "crypto", "cryptocurrency", "btc", "eth"]
+    if ANY([(word in text.lower()) for word in blacklist]):
+        update.message.reply_text(f'спамер обноружен! харе спамить! {text}')
+
+    response = twitterScreenshotRecognizer.inspect(path)
+    update.message.reply_text(f'{response}')

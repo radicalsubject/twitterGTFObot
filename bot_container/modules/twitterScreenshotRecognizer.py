@@ -1,8 +1,12 @@
-model = torch.load("../neuro/model")
+import torch
+from torchvision import transforms
+device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
+
 
 from PIL import Image, ImageFile
 import torch.nn.functional as F
 
+model = torch.load("./neuro/new_model_5_epochs")
 def inspect(path):
         
     labels = ['trash','tweets']
@@ -22,5 +26,5 @@ def inspect(path):
     model.eval()
     prediction = F.softmax(model(img), dim=1)
     prediction = prediction.argmax()
-    print(labels[prediction]) 
+    # print(labels[prediction]) 
     return labels[prediction]

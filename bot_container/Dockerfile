@@ -9,6 +9,7 @@ RUN conda update -n base -c defaults conda
 RUN conda env create -f env.yml
 RUN apt update && apt install -y libsm6 libxext6
 RUN apt-get -y install tesseract-ocr
+RUN conda run -n twibot conda install -y pytorch torchvision -c pytorch
 # RUN pip install pillow
 # RUN pip install pytesseract
 # copy all other files for bot

@@ -35,10 +35,6 @@ def image_handler(update: Update, context: CallbackContext):
     path = os.getcwd() + "/tmp/" + file_id + ".jpg"
     file.download(path)
     blacklist = ["bitcoin", "elon", "musk", "crypto", "cryptocurrency", "btc", "eth"]
-    # if any([(word in text.lower()) for word in blacklist]):
-    #     update.message.reply_text(f'Спамер обноружен! харе спамить!')
-    #     bot.delete_message(chat_id=update.message.chat_id,
-    #            message_id=update.message.message_id)
     response = twitterScreenshotRecognizer.inspect(path)
     
     if response == "tweets":
@@ -51,6 +47,6 @@ def image_handler(update: Update, context: CallbackContext):
             except:
                 update.message.reply_text("Can't delete message cause probably i dont have admin rights.")
         else:
-            update.message.reply_text(f'Это похоже на скриншот твиттера. U\'re on the thin freaking ice!')
+            update.message.reply_text(f'Это похоже на скриншот твиттера. U\'re on thin freaking ice!')
     else: 
         update.message.reply_text("Nice pic u got there, be sure not to post twitter screenshoots with Elon Musk on my watch 👀")

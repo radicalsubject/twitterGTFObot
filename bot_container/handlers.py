@@ -31,9 +31,9 @@ def test(update, context):
 
 def image_handler(update: Update, context: CallbackContext):
     file_id = update.message.photo[-1].file_id
-    file = bot.getFile(file_id)
+    file_ = bot.getFile(file_id)
     path = os.getcwd() + "/tmp/" + file_id + ".jpg"
-    file.download(path)
+    file_.download(path)
     blacklist = ["bitcoin", "elon", "musk", "crypto", "cryptocurrency", "btc", "eth"]
     response = twitterScreenshotRecognizer.inspect(path)
     

@@ -10,5 +10,5 @@ def read_image(path):
     # Example tesseract_cmd = r'C:\Program Files (x86)\Tesseract-OCR\tesseract'
     # Simple image to string
     text = pytesseract.image_to_string(Image.open(path))
-    print(text)
+    # print(text)
     return text

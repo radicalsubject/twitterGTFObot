@@ -1,0 +1,41 @@
+name: Build and publish
+on:
+# Trigger the workflow on push or pull request,
+  # but only for the main branch
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+    build:
+        name: Build for ubuntu-latest
+        runs-on: ubuntu-latest
+
+        steps:
+          - uses: actions/checkout@v2
+          - name: Build the stack
+            run: docker-compose up -d --build
+          - name: Git-remote-add
+            run: git remote add remote add dokku dokku@178.176.224.186:bot
+          - name: Git-fetch-all
+            run: git fetch --all
+          - name: push to dokku
+            run: git push dokku master
+            # uses: svenstaro/upload-release-action@v2
+            # with:
+            #   repo_token: ${{ secrets.GITHUB_TOKEN }}
+            #   file: target/release
+            #   asset_name: mything
+            #   tag: ${{ github.ref }}
+            #   overwrite: true
+            #   body: "This is my release text"
+                  
+# # build the image
+# docker build -t dokku/test-app:v12 .
+# # copy the image to the dokku host
+# docker save dokku/test-app:v12 | bzip2 | ssh my.dokku.host "bunzip2 | docker load"
+# # tag and deploy the image
+# ssh my.dokku.host "dokku tags:create test-app previous; dokku tags:deploy test-app v12"

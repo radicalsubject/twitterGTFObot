@@ -13,3 +13,14 @@ _conda env export --no-builds > env.yml_
 
 ## DOCKER STARTUP
 docker-compose up --build
+
+## dokku pipeline
+# build the image
+docker build -t dokku/test-app:v12 .
+# copy the image to the dokku host
+docker save dokku/test-app:v12 | ssh 178.176.224.186 "docker load"
+# tag and deploy the image
+ssh 178.176.224.186 "dokku tags:create test-app previous; dokku tags:deploy test-app v12"
+
+<!-- 
+ -->

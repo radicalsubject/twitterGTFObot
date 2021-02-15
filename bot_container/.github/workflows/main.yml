@@ -24,6 +24,11 @@ jobs:
             run: git fetch --all
           - name: push to dokku
             run: git push dokku master
+
+                        run: docker build -t radicalsubject/twittergtfo:v0
+          - name: Upload to release to dockerhub
+            run: docker tag radicalsubject/twittergtfo:v0 radicalsubjecst/twittergtfo  
+            run: docker push radicalsubject/test:tagname 
             # uses: svenstaro/upload-release-action@v2
             # with:
             #   repo_token: ${{ secrets.GITHUB_TOKEN }}

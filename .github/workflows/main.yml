@@ -23,8 +23,14 @@ jobs:
           #   run: git fetch --all
           # - name: push to dokku
           #   run: git push dokku master
-          - name: Build the stack
-            run: docker-compose build #-t radicalsubject/twittergtfo:v0
+      steps:
+          - uses: actions/checkout@v2
+          - name: Run docker-compose stack
+            run: docker-compose -f docker-compose.yml up -d #docker build -t radicalsubject/twittergtfo:v0
+          - name: Check folder
+            run: pwd
+          - name: Check files
+            run: ls -ltr 
           - name: build image
             run: docker tag radicalsubject/twittergtfo:v0 radicalsubjecst/twittergtfo  
           - name: Upload to release to dockerhub

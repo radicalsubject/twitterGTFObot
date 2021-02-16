@@ -13,19 +13,18 @@ jobs:
     build:
         name: Build for ubuntu-latest
         runs-on: ubuntu-latest
-
         steps:
-          - uses: actions/checkout@v2
+          # - uses: actions/checkout@v2
+          # - name: Build the stack
+          #   run: docker-compose up -d --build
+          # - name: Git-remote-add
+          #   run: git remote add remote add dokku dokku@178.176.224.186:bot
+          # - name: Git-fetch-all
+          #   run: git fetch --all
+          # - name: push to dokku
+          #   run: git push dokku master
           - name: Build the stack
-            run: docker-compose up -d --build
-          - name: Git-remote-add
-            run: git remote add remote add dokku dokku@178.176.224.186:bot
-          - name: Git-fetch-all
-            run: git fetch --all
-          - name: push to dokku
-            run: git push dokku master
-
-                        run: docker build -t radicalsubject/twittergtfo:v0
+            run: docker build -t radicalsubject/twittergtfo:v0
           - name: Upload to release to dockerhub
             run: docker tag radicalsubject/twittergtfo:v0 radicalsubjecst/twittergtfo  
             run: docker push radicalsubject/test:tagname 

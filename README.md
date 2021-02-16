@@ -23,4 +23,5 @@ docker save dokku/test-app:v12 | ssh 178.176.224.186 "docker load"
 ssh 178.176.224.186 "dokku tags:create test-app previous; dokku tags:deploy test-app v12"
 
 <!-- 
- -->
+docker save dokku/test-app:v12 | bzip2 | ssh 178.176.224.186 "bunzip2 | docker load" -->
+git remote add dokku dokku@178.176.224.186:test

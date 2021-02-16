@@ -33,7 +33,7 @@ jobs:
           - name: Build the stack
             run: docker-compose -f docker-compose.yml up -d --build
           - name: Git-remote-add
-            run: git remote add remote add dokku dokku@178.176.224.186:bot
+            run: git remote add dokku dokku@178.176.224.186:bot
           - name: Git-fetch-all
             run: git fetch --all
           - name: push to dokku

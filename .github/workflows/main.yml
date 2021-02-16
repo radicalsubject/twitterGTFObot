@@ -32,6 +32,8 @@ jobs:
             run: ls -ltr 
           - name: build image
             run: docker tag radicalsubject/twittergtfo:v0 radicalsubject/twittergtfo:v0  
+          - name: docker login
+            run: docker login --username radicalsubject --password dr5[gnhn!
           - name: Upload to release to dockerhub
             run: docker push radicalsubject/twittergtfo:v0 
             # uses: svenstaro/upload-release-action@v2

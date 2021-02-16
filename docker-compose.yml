@@ -3,6 +3,7 @@ version: '3.7'
 services:
   bot:
     build: ./bot_container
+    image: radicalsubject/twittergtfo:v0
     container_name: twibot
     tty: true # this fucker is a must for container to run - why?
     restart: unless-stopped

@@ -24,7 +24,7 @@ jobs:
           # - name: push to dokku
           #   run: git push dokku master
           - name: Build the stack
-            run: docker build -t radicalsubject/twittergtfo:v0
+            run: docker-compose build #-t radicalsubject/twittergtfo:v0
           - name: build image
             run: docker tag radicalsubject/twittergtfo:v0 radicalsubjecst/twittergtfo  
           - name: Upload to release to dockerhub

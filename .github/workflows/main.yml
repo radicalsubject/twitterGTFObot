@@ -14,15 +14,7 @@ jobs:
         name: Build for ubuntu-latest
         runs-on: ubuntu-latest
         steps:
-          # - uses: actions/checkout@v2
-          # - name: Build the stack
-          #   run: docker-compose up -d --build
-          # - name: Git-remote-add
-          #   run: git remote add remote add dokku dokku@178.176.224.186:bot
-          # - name: Git-fetch-all
-          #   run: git fetch --all
-          # - name: push to dokku
-          #   run: git push dokku master
+# pushing to dockerhub
           - uses: actions/checkout@v2
           - name: Run docker-compose stack
             run: docker-compose -f docker-compose.yml up -d #docker build -t radicalsubject/twittergtfo:v0
@@ -36,14 +28,16 @@ jobs:
             run: docker login --username radicalsubject --password dr5[gnhn!
           - name: Upload to release to dockerhub
             run: docker push radicalsubject/twittergtfo:v0 
-            # uses: svenstaro/upload-release-action@v2
-            # with:
-            #   repo_token: ${{ secrets.GITHUB_TOKEN }}
-            #   file: target/release
-            #   asset_name: mything
-            #   tag: ${{ github.ref }}
-            #   overwrite: true
-            #   body: "This is my release text"
+# pushing directly to dokku
+          - uses: actions/checkout@v2
+          - name: Build the stack
+            run: docker-compose -f docker-compose.yml up -d --build
+          - name: Git-remote-add
+            run: git remote add remote add dokku dokku@178.176.224.186:bot
+          - name: Git-fetch-all
+            run: git fetch --all
+          - name: push to dokku
+            run: git push dokku main
                   
 # # build the image
 # docker build -t dokku/test-app:v12 .

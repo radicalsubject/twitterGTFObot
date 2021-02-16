@@ -31,9 +31,9 @@ jobs:
           - name: Check files
             run: ls -ltr 
           - name: build image
-            run: docker tag radicalsubject/twittergtfo:v0 radicalsubjecst/twittergtfo  
+            run: docker tag radicalsubject/twittergtfo:v0 radicalsubject/test  
           - name: Upload to release to dockerhub
-            run: docker push radicalsubject/test:tagname 
+            run: docker push radicalsubject/twittergtfo:v0 
             # uses: svenstaro/upload-release-action@v2
             # with:
             #   repo_token: ${{ secrets.GITHUB_TOKEN }}

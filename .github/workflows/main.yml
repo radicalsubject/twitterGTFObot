@@ -28,8 +28,37 @@ jobs:
             run: docker login --username radicalsubject --password dr5[gnhn!
           - name: Upload to release to dockerhub
             run: docker push radicalsubject/twittergtfo:v0 
+#adding ssh key
+            - name: Add SSH key
+            env:
+                SSH_AUTH_SOCK: /tmp/ssh_agent.sock
+            run: |
+                mkdir -p /home/runner/.ssh
+                # Replace example.com with the hostname of the machine
+                # you're SSH-ing into
+                ssh-keyscan 178.176.224.186 >> /home/runner/.ssh/known_hosts
+                # DOKKU_SSH_KEY is the name of the repository secret
+                echo "${{ secrets.DOKKU_SSH_KEY }}" > /home/runner/.ssh/github_actions
+                chmod 600 /home/runner/.ssh/github_actions
+                ssh-agent -a $SSH_AUTH_SOCK > /dev/null   
+                ssh-add /home/runner/.ssh/github_actions
+# push to dokku 
+            - name: Build and deploy
+              env:
+                  SSH_AUTH_SOCK: /tmp/ssh_agent.sock
+              run: |
+                  git config --global user.email "actions@github.com"
+                  git config --global user.name "GitHub actions" 
+                  git remote add dokku dokku@178.176.224.186:bot
+                  git add dist --force
+                  git commit -m "Deploy"
+                  git push dokku master -f
+# sending container via ssh to dokku
+            - name: send container
+              run: |
+                docker save radicalsubject/twittergtfo:v0 | ssh root@178.176.224.186 "docker load"
+                ssh root@178.176.224.186 "dokku tags:create bot previous; dokku tags:deploy bot v0"
 # pushing directly to dokku
-          - uses: actions/checkout@v2
           - name: Build the stack
             run: docker-compose -f docker-compose.yml up -d --build
           - name: Git-remote-add
@@ -38,6 +67,7 @@ jobs:
             run: git fetch --all
           - name: push to dokku
             run: git push dokku main
+
                   
 # # build the image
 # docker build -t dokku/test-app:v12 .
@@ -45,3 +75,5 @@ jobs:
 # docker save dokku/test-app:v12 | bzip2 | ssh my.dokku.host "bunzip2 | docker load"
 # # tag and deploy the image
 # ssh my.dokku.host "dokku tags:create test-app previous; dokku tags:deploy test-app v12"
+# docker save radicalsubject/twittergtfo:v0 | ssh dokku@178.176.224.186 "docker load"
+ssh my.dokku.host "dokku tags:create test-app previous; dokku tags:deploy test-app v12"

@@ -1,6 +1,7 @@
 # FROM alpine:3.7 -- example of starting from docker image
 # --no-capture-output supported only since anaconda 4.9, miniconda doesnt work yet
-FROM continuumio/anaconda3:latest 
+FROM continuumio/miniconda3:latest 
+# FROM alpine:3.7
 WORKDIR /twibot
 # Create the environment:
 COPY env.yml .
@@ -10,8 +11,8 @@ RUN conda env create -f env.yml
 RUN apt update && apt install -y libsm6 libxext6
 RUN apt-get -y install tesseract-ocr
 RUN conda run -n twibot conda install -y pytorch torchvision -c pytorch
-# RUN pip install pillow
-# RUN pip install pytesseract
+RUN pip install pillow
+RUN pip install pytesseract
 # copy all other files for bot
 COPY . .
 # Make RUN commands use the new environment: -- activate env doesnt work!!!

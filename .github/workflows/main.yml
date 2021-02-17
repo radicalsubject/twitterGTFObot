@@ -76,4 +76,4 @@ jobs:
 # # tag and deploy the image
 # ssh my.dokku.host "dokku tags:create test-app previous; dokku tags:deploy test-app v12"
 # docker save radicalsubject/twittergtfo:v0 | ssh dokku@178.176.224.186 "docker load"
-ssh my.dokku.host "dokku tags:create test-app previous; dokku tags:deploy test-app v12"
+#ssh my.dokku.host "dokku tags:create test-app previous; dokku tags:deploy test-app v12"

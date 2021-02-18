@@ -70,6 +70,7 @@ jobs:
           - name: send container
             env:
                 SSH_AUTH_SOCK: /tmp/ssh_agent.sock
+                BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
             run: |
               docker tag radicalsubject/twittergtfo:v0 dokku/bot:latest  
               docker save dokku/bot:latest | ssh root@178.176.224.186 "docker load"

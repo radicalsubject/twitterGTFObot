@@ -42,31 +42,33 @@ jobs:
                 chmod 600 /home/runner/.ssh/github_actions
                 ssh-agent -a $SSH_AUTH_SOCK > /dev/null   
                 ssh-add /home/runner/.ssh/github_actions
-# push to dokku 
-          - name: Build and deploy
-            env:
-                SSH_AUTH_SOCK: /tmp/ssh_agent.sock
-            run: |
-                git config --global user.email "actions@github.com"
-                git config --global user.name "GitHub actions" 
-                git remote add dokku dokku@178.176.224.186:bot
-                # git add dist --force
-                # git commit -m "Deploy"
-                git push dokku main -f
+# # push to dokku 
+#           - name: Build and deploy
+#             env:
+#                 SSH_AUTH_SOCK: /tmp/ssh_agent.sock
+#             run: |
+#                 git config --global user.email "actions@github.com"
+#                 git config --global user.name "GitHub actions" 
+#                 git remote add dokku dokku@178.176.224.186:bot
+#                 # git add dist --force
+#                 # git commit -m "Deploy"
+#                 git push dokku main -f
+# # or you could do this 
+# # pushing directly to dokku
+#           - name: Build the stack
+#             run: docker-compose -f docker-compose.yml up -d --build
+#           - name: Git-remote-add
+#             run: git remote add dokku dokku@178.176.224.186:bot
+#           - name: Git-fetch-all
+#             run: git fetch --all
+#           - name: push to dokku
+#             run: git push dokku main
+
 # sending container via ssh to dokku
           - name: send container
             run: |
               docker save radicalsubject/twittergtfo:v0 | ssh root@178.176.224.186 "docker load"
               ssh root@178.176.224.186 "dokku tags:create bot previous; dokku tags:deploy bot v0"
-# pushing directly to dokku
-          - name: Build the stack
-            run: docker-compose -f docker-compose.yml up -d --build
-          - name: Git-remote-add
-            run: git remote add dokku dokku@178.176.224.186:bot
-          - name: Git-fetch-all
-            run: git fetch --all
-          - name: push to dokku
-            run: git push dokku main
 
 
 

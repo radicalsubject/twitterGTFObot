@@ -7,11 +7,11 @@ from PIL import Image, ImageFile
 import torch.nn.functional as F
 
 model = torch.load("./neuro/mymodel-25-epochs")
-def inspect(path):
+def inspect(image):
         
     labels = ['trash','tweets']
 
-    img = Image.open(path) # "../data/val/tweets/0_c5mv1911cqo21.jpg"
+    img = image
 
     img_transforms = transforms.Compose([
             transforms.Resize(256),
@@ -26,5 +26,4 @@ def inspect(path):
     model.eval()
     prediction = F.softmax(model(img), dim=1)
     prediction = prediction.argmax()
-    # print(labels[prediction]) 
     return labels[prediction]

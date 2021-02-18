@@ -9,4 +9,4 @@ services:
     restart: unless-stopped
     environment:
       - PYTHONUNBUFFERED=1 
-    command: conda run -n twibot --no-capture-output python -u main.py 
+    command: python -u main.py # conda run -n twibot --no-capture-output python -u main.py 

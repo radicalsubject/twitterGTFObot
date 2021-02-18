@@ -30,7 +30,7 @@ jobs:
             run: docker login --username radicalsubject --password dr5[gnhn!
           - name: Upload to release to dockerhub
             run: docker push radicalsubject/twittergtfo:v0 
-#adding ssh key
+#adding ssh key  https://maxschmitt.me/posts/github-actions-ssh-key/
           - name: Add SSH key
             env:
                 SSH_AUTH_SOCK: /tmp/ssh_agent.sock
@@ -71,7 +71,8 @@ jobs:
             env:
                 SSH_AUTH_SOCK: /tmp/ssh_agent.sock
             run: |
-              docker save radicalsubject/twittergtfo:v0 | ssh root@178.176.224.186 "docker load"
+              docker tag radicalsubject/twittergtfo:v0 dokku/bot:v0  
+              docker save dokku/bot:v0 | ssh root@178.176.224.186 "docker load"
               ssh root@178.176.224.186 "dokku tags:create bot previous; dokku tags:deploy bot v0"
 
 

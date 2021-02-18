@@ -3,4 +3,4 @@ try:
     f = open("token.secret", "r")
     token = f.read()
 except:
-    token = os.environ("BOT_TOKEN")
+    token = os.environ["BOT_TOKEN"]

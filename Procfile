@@ -1,1 +1,1 @@
-web: docker-compose up --buld
+web: python -u main.py

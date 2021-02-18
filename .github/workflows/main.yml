@@ -71,9 +71,9 @@ jobs:
             env:
                 SSH_AUTH_SOCK: /tmp/ssh_agent.sock
             run: |
-              docker tag radicalsubject/twittergtfo:v0 dokku/bot:v0  
-              docker save dokku/bot:v0 | ssh root@178.176.224.186 "docker load"
-              ssh root@178.176.224.186 "dokku tags:create bot previous; dokku tags:deploy bot v0"
+              docker tag radicalsubject/twittergtfo:v0 dokku/bot:latest  
+              docker save dokku/bot:latest | ssh root@178.176.224.186 "docker load"
+              ssh root@178.176.224.186 "dokku tags:create bot previous; dokku tags:deploy bot latest"
 
 
 

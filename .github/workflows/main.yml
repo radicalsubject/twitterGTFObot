@@ -66,6 +66,8 @@ jobs:
 
 # sending container via ssh to dokku
           - name: send container
+            env:
+                SSH_AUTH_SOCK: /tmp/ssh_agent.sock
             run: |
               docker save radicalsubject/twittergtfo:v0 | ssh root@178.176.224.186 "docker load"
               ssh root@178.176.224.186 "dokku tags:create bot previous; dokku tags:deploy bot v0"

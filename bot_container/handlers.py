@@ -3,7 +3,8 @@ from telegram.ext import (CallbackContext, ConversationHandler)
 import os, logging
 from modules import pytesseractModule, twitterScreenshotRecognizer
 from token_extractor import token
-
+print(token)
+logging.info(f"{token}")
 bot = Bot(token)
 
 # # Define a few command handlers. These usually take the two arguments update and

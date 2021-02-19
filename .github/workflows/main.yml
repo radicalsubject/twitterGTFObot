@@ -44,7 +44,7 @@ jobs:
                 # DOKKU_SSH_KEY is the name of the repository secret
                 echo "${{ secrets.DOKKU_SSH_KEY }}" > /home/runner/.ssh/github_actions
                 chmod 600 /home/runner/.ssh/github_actions
-                ssh-agent -a $SSH_AUTH_SOCK > /dev/null   
+                ssh-agent -a $SSH_AUTH_SOCK > /dev/null
                 ssh-add /home/runner/.ssh/github_actions
 # pushing directly to dokku
           # - uses: actions/checkout@v1

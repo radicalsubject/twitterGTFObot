@@ -63,7 +63,6 @@ jobs:
                 git remote add dokku dokku@178.176.224.186:bot
                 git fetch --unshallow origin
                 git pull --rebase
-                git commit -m "Deploy"
                 git push dokku main -f
 # # push to dokku 
 #           - name: Build and deploy

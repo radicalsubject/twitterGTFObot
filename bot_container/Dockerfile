@@ -1,7 +1,8 @@
 FROM python:3.8-slim
 
 # Install manually all the missing libraries
-RUN apt-get update -qq && apt-get install -y tesseract-ocr
+RUN apt-get update -qq 
+# && apt-get install -y tesseract-ocr
 
 # Install Python dependencies.
 COPY requirements.txt requirements.txt

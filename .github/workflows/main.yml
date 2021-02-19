@@ -54,10 +54,9 @@ jobs:
                 ssh-keyscan github.com >> ~/.ssh/known_hosts
                 ssh-agent -a $SSH_AUTH_SOCK > /dev/null
                 ssh-add - <<< "${{ secrets.DOKKU_SSH_KEY }}"
-          - name: Some task that fetches dependencies
+          - name: Git-remote-add
             env:
                 SSH_AUTH_SOCK: /tmp/ssh_agent.sock
-          - name: Git-remote-add
             run: git remote add dokku dokku@178.176.224.186:bot
           # - name: Git-fetch-all
           #   run: git fetch --all

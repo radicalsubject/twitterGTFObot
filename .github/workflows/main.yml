@@ -44,20 +44,20 @@ jobs:
                 chmod 600 /home/runner/.ssh/github_actions
                 ssh-agent -a $SSH_AUTH_SOCK > /dev/null   
                 ssh-add /home/runner/.ssh/github_actions
-# # push to dokku 
-#           - name: Build and deploy
-#             env:
-#                 SSH_AUTH_SOCK: /tmp/ssh_agent.sock
-#             run: |
-#                 git config --global user.email "actions@github.com"
-#                 git config --global user.name "GitHub actions" 
-#                 git remote add dokku dokku@178.176.224.186:bot
-#                 # git add dist --force
-#                 # git commit -m "Deploy"
-#                 git push dokku main -f
-# # or you could do this 
-# # pushing directly to dokku
-          - uses: actions/checkout@v1
+# push to dokku 
+          - name: Build and deploy
+            env:
+                SSH_AUTH_SOCK: /tmp/ssh_agent.sock
+            run: |
+                git config --global user.email "actions@github.com"
+                git config --global user.name "GitHub actions" 
+                git remote add dokku dokku@178.176.224.186:bot
+                # git add dist --force
+                # git commit -m "Deploy"
+                git push dokku main -f
+# or you could do this 
+# pushing directly to dokku
+          # - uses: actions/checkout@v1
           - name: Setup SSH Keys and known_hosts
             env:
                 SSH_AUTH_SOCK: /tmp/ssh_agent.sock

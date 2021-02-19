@@ -24,10 +24,10 @@ jobs:
             run: pwd
           - name: Check files
             run: ls -ltr 
-          - name: build image
+          - name: tag image
             run: docker tag radicalsubject/twittergtfo:v0 radicalsubject/twittergtfo:v0  
           - name: docker login
-            run: docker login --username radicalsubject --password dr5[gnhn!
+            run: docker login --username ${{ secrets.USERNAME }} --password ${{ secrets.PSSWRD }}
           - name: Upload to release to dockerhub
             run: docker push radicalsubject/twittergtfo:v0 
 #adding ssh key  https://maxschmitt.me/posts/github-actions-ssh-key/
@@ -57,14 +57,12 @@ jobs:
 #                 git push dokku main -f
 # # or you could do this 
 # # pushing directly to dokku
-#           - name: Build the stack
-#             run: docker-compose -f docker-compose.yml up -d --build
-#           - name: Git-remote-add
-#             run: git remote add dokku dokku@178.176.224.186:bot
-#           - name: Git-fetch-all
-#             run: git fetch --all
-#           - name: push to dokku
-#             run: git push dokku main
+          - name: Git-remote-add
+            run: git remote add dokku dokku@178.176.224.186:bot
+          - name: Git-fetch-all
+            run: git fetch --all
+          - name: push to dokku
+            run: git push dokku main
 
 # sending container via ssh to dokku
           - name: send container

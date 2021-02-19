@@ -63,7 +63,7 @@ jobs:
                 git remote add dokku dokku@178.176.224.186:bot
                 git fetch --unshallow origin
                 git pull --rebase
-                git add dist --force
+              # git add dist --force
                 git commit -m "Deploy"
                 git push dokku main -f
 # # push to dokku 

@@ -15,10 +15,9 @@ jobs:
         runs-on: ubuntu-latest
         steps:
 # pushing to dockerhub
-          - name: Checkout
-            uses: actions/checkout@v2
-            with:
-              path: main
+          - uses: actions/checkout@v2
+            # with:
+            #   path: main
           # - name: Run docker-compose stack
           #   env: 
           #       BOT_TOKEN: ${{ secrets.BOT_TOKEN }}

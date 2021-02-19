@@ -45,10 +45,10 @@ jobs:
                 ssh-agent -a $SSH_AUTH_SOCK > /dev/null   
                 ssh-add /home/runner/.ssh/github_actions
 # pushing directly to dokku
-          - uses: actions/checkout@v1
+          # - uses: actions/checkout@v1
           - name: Setup SSH Keys and known_hosts
-            # env:
-            #     SSH_AUTH_SOCK: /tmp/ssh_agent.sock
+            env:
+                SSH_AUTH_SOCK: /tmp/ssh_agent.sock
             run: |
                 mkdir -p ~/.ssh
                 ssh-keyscan github.com >> ~/.ssh/known_hosts

@@ -57,11 +57,10 @@ jobs:
           - name: Git-remote-add
             env:
                 SSH_AUTH_SOCK: /tmp/ssh_agent_github.sock
-            run: git remote add dokku dokku@178.176.224.186:bot
-          - name: Git-fetch-all
-            run: git fetch --all
-          - name: push to dokku
-            run: git push dokku main
+            run: |
+                git remote add dokku dokku@178.176.224.186:bot
+                git fetch --all
+                git push dokku main
 # # push to dokku 
 #           - name: Build and deploy
 #             env:

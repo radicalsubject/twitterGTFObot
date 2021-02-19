@@ -61,7 +61,7 @@ jobs:
                 SSH_AUTH_SOCK: /tmp/ssh_agent_github.sock
             run: |
                 git remote add dokku dokku@178.176.224.186:bot
-                git fetch --unshallow
+                git fetch --unshallow origin
                 git push dokku main -f
 # # push to dokku 
 #           - name: Build and deploy

@@ -62,8 +62,8 @@ jobs:
             run: |
                 git remote add dokku dokku@178.176.224.186:bot
                 git fetch --unshallow origin
-                ls
-                git push dokku main -f
+                ssh root@178.176.224.186 "dokku git:initialize bot"
+                git push -u dokku main
 # # push to dokku 
 #           - name: Build and deploy
 #             env:

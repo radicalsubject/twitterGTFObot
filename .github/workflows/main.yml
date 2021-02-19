@@ -45,7 +45,7 @@ jobs:
                 ssh-agent -a $SSH_AUTH_SOCK > /dev/null   
                 ssh-add /home/runner/.ssh/github_actions
 # pushing directly to dokku
-          # - uses: actions/checkout@v1
+          - uses: actions/checkout@v1
           - name: Setup SSH Keys and known_hosts
             env:
                 SSH_AUTH_SOCK: /tmp/ssh_agent_github.sock
@@ -58,11 +58,11 @@ jobs:
             env:
                 SSH_AUTH_SOCK: /tmp/ssh_agent_github.sock
             run: |
-                git config --global user.email "actions@github.com"
-                git config --global user.name "GitHub actions"                
+                # git config --global user.email "actions@github.com"
+                # git config --global user.name "GitHub actions"                
                 git remote add dokku dokku@178.176.224.186:bot
                 # git fetch --unshallow origin
-                git pull --rebase
+                # git pull --rebase
                 git push dokku main -f
 # # push to dokku 
 #           - name: Build and deploy

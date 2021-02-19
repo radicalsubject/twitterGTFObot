@@ -11,7 +11,7 @@ RUN pip install -r requirements.txt
 RUN mkdir /app
 ADD . /app
 WORKDIR /app
-ENV BOT_TOKEN=${BOT_TOKEN}
+# ENV BOT_TOKEN=${BOT_TOKEN}
 
 # CMD python /app/bot.py
 

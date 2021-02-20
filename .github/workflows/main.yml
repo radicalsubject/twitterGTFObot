@@ -44,7 +44,7 @@ jobs:
                 # DOKKU_SSH_KEY is the name of the repository secret
                 echo "${{ secrets.DOKKU_SSH_KEY }}" > /home/runner/.ssh/github_actions
                 chmod 600 /home/runner/.ssh/github_actions
-                ssh-agent -a $SSH_AUTH_SOCK > /dev/null   
+                ssh-agent -a $SSH_AUTH_SOCK > /dev/null 
                 ssh-add /home/runner/.ssh/github_actions
 # pushing directly to dokku
           # - uses: actions/checkout@v1
@@ -61,7 +61,7 @@ jobs:
                 SSH_AUTH_SOCK: /tmp/ssh_agent_github.sock
             run: |
                 git remote add dokku dokku@178.176.224.186:bot
-                git fetch --unshallow origin 
+                git fetch --unshallow origin
                 ssh root@178.176.224.186 "dokku git:initialize bot"
                 git push -u dokku main:main
 # # push to dokku 

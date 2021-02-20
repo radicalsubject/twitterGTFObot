@@ -63,7 +63,7 @@ jobs:
                 git remote add dokku dokku@178.176.224.186:bot
                 git fetch --unshallow origin 
                 ssh root@178.176.224.186 "dokku git:initialize bot"
-                git push -u dokku main
+                git push -u dokku main:main
 # # push to dokku 
 #           - name: Build and deploy
 #             env:
@@ -74,7 +74,7 @@ jobs:
 #                 git remote add dokku dokku@178.176.224.186:bot
 #                 # git add dist --force
 #                 # git commit -m "Deploy"
-#                 git push dokku main -f
+#                 git push dokku main:main -f
 # or you could do this 
 # sending container via ssh to dokku
           - name: send container
